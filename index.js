@@ -100,16 +100,67 @@ app.route('/teams').get((request, response) => {
     {
         id: 1,
         name: 'Teste',
-        TEAMS: ['']
+        TEAMS: [''],
+        status: 'Em andamento'
     },
     {
         id: 2,
-        name: 'segundo'
+        name: 'segundo',
+        status: 'Em andamento'
     },
     {
         id: 3,
-        name: 'tre'
-    }
+        name: 'tre',
+        status: 'concluido'
+    },
+    {
+      id: 4,
+      name: 'front',
+      TEAMS: [''],
+      status: 'Em andamento'
+    },
+  {
+      id: 5,
+      name: 'back',
+      status: 'Em andamento'
+  },
+  {
+      id: 6,
+      name: 'database',
+      status: 'Em andamento'
+  },
+  {
+    id: 7,
+    name: 'TI',
+    TEAMS: [''],
+    status: 'Em andamento'
+},
+{
+    id: 8,
+    name: 'angular',
+    status: 'Em andamento'
+},
+{
+    id: 9,
+    name: 'golang',
+    status: 'Em andamento'
+},
+{
+  id: 10,
+  name: 'junior',
+  TEAMS: [''],
+  status: 'concluido'
+},
+{
+  id: 11,
+  name: 'pleno',
+  status: 'concluido'
+},
+{
+  id: 12,
+  name: 'senior',
+  status: 'concluido'
+}
 ]
 
 var TEAMS = [
