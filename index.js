@@ -59,7 +59,7 @@ app.route('/projects/:id').delete((request, response) => {
 
 //teams
 app.route('/teams').get((request, response) => {
-  response.send(TEAMS);
+  response.send(TEAM);
 });
 
 app.route('/teams').post((request, response) => {
@@ -78,7 +78,7 @@ app.route('/teams/:id').put((request, response) => {
   const team = request.body;
 
   const index = PROJECTS.findIndex(teamIterator => teamIterator.id === teamId);
-  TEAMS[index] = team;
+  TEAM[index] = team;
 
   response.status(200).send(team);
 });
@@ -91,7 +91,7 @@ app.route('/teams/:id').get((request, response) => {
 
 app.route('/teams/:id').delete((request, response) => {
   const teamId = +request.params['id'];
-  TEAM = TEAMS.filter(teamIterator => teamIterator.id !== teamId);
+  TEAM = TEAM.filter(teamIterator => teamIterator.id !== teamId);
 
   response.status(204).send({});
 });
@@ -183,23 +183,35 @@ var PROJECT = [
   }
 ]
 
-var TEAMS = [
+var TEAM = [
   {
     id: 1,
     name: 'One Piece',
-    members: ['Carlos', 'Victor', 'Gaby'],
-    project_id: 1
+    members: ['Carlos', 'Victor', 'Gaby']
   },
   {
-    id: 1,
+    id: 2,
     name: 'Naruto',
-    members: ['Pedro', 'Lucas', 'Maria'],
-    project_id: 1
+    members: ['Pedro', 'Lucas', 'Maria']
   },
   {
-    id: 1,
+    id: 3,
     name: 'Barbie',
-    members: ['Clara', 'Wannubia', 'Kelly'],
-    project_id: 1
+    members: ['Clara', 'Wannubia', 'Kelly']
+  },
+  {
+    id: 4,
+    name: 'Barba Branca',
+    members: ['Jose', 'Danubio', 'Nikole']
+  },
+  {
+    id: 5,
+    name: 'Senai',
+    members: ['Nikollas', 'Paulo', 'Helen']
+  },
+  {
+    id: 6,
+    name: 'Crato',
+    members: ['Bruna', 'Manuella', 'Isabela']
   }
 ]
