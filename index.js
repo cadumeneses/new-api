@@ -25,12 +25,17 @@ app.route('/projects').get((request, response) => {
 app.route('/projects').post((request, response) => {
   let project = request.body;
 
+  if(project.name < 1){
+    response.status(403).json({'mensagem':'Não foi possivel cadastrar o projeto devido a um error'})
+  }
+  if(project.description < 1){
+    response.status(403).json({'mensagem':'Não foi possivel cadastrar o projeto devido a um error'})
+  }
+
   const firstId = PROJECT ? Math.max.apply(null, PROJECT.map(projectIterator => projectIterator.id)) + 1 : 1;
   project.id = firstId;
   PROJECT.push(project);
-
-
-  response.status(201).send(project);
+  response.status(201).send(project).json({'mensagem': 'Projeto cadastrado com sucesso!'});
 });
 
 app.route('/projects/:id').put((request, response) => {
@@ -102,7 +107,15 @@ var PROJECT = [
     name: 'Teste',
     TEAMS: [''],
     status: 'Em andamento',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vero neque molestiae sed sunt eos dolorum voluptate tempore. Praesentium voluptate fugit architecto distinctio similique veniam dolor dolores et asperiores deserunt.'
+    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vero neque molestiae sed sunt eos dolorum voluptate tempore. Praesentium voluptate fugit architecto distinctio similique veniam dolor dolores et asperiores deserunt.',
+    tasks:[
+      {
+        nameTask: '',
+        member: '',
+        dateInit: '',
+        dateEnd: ''
+      }
+    ]
   },
   {
     id: 2,
