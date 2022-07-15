@@ -25,17 +25,17 @@ app.route('/projects').get((request, response) => {
 app.route('/projects').post((request, response) => {
   let project = request.body;
 
-  if(project.name < 1){
-    response.status(403).json({'mensagem':'Não foi possivel cadastrar o projeto devido a um error'})
+  if (project.name < 1) {
+    response.status(403).json({ 'mensagem': 'Não foi possivel cadastrar o projeto devido a um error' })
   }
-  if(project.description < 1){
-    response.status(403).json({'mensagem':'Não foi possivel cadastrar o projeto devido a um error'})
+  if (project.description < 1) {
+    response.status(403).json({ 'mensagem': 'Não foi possivel cadastrar o projeto devido a um error' })
   }
 
   const firstId = PROJECT ? Math.max.apply(null, PROJECT.map(projectIterator => projectIterator.id)) + 1 : 1;
   project.id = firstId;
   PROJECT.push(project);
-  response.status(201).send(project).json({'mensagem': 'Projeto cadastrado com sucesso!'});
+  response.status(201).send(project).json({ 'mensagem': 'Projeto cadastrado com sucesso!' });
 });
 
 app.route('/projects/:id').put((request, response) => {
@@ -70,9 +70,9 @@ app.route('/teams').get((request, response) => {
 app.route('/teams').post((request, response) => {
   let team = request.body;
 
-  const firstId = TEAMS ? Math.max.apply(null, TEAMS.map(teamIterator => teamIterator.id)) + 1 : 1;
+  const firstId = TEAM ? Math.max.apply(null, TEAM.map(teamIterator => teamIterator.id)) + 1 : 1;
   team.id = firstId;
-  TEAMS.push(team);
+  TEAM.push(team);
 
 
   response.status(201).send(team);
@@ -82,7 +82,7 @@ app.route('/teams/:id').put((request, response) => {
   const teamId = +request.params['id'];
   const team = request.body;
 
-  const index = PROJECTS.findIndex(teamIterator => teamIterator.id === teamId);
+  const index = TEAM.findIndex(teamIterator => teamIterator.id === teamId);
   TEAM[index] = team;
 
   response.status(200).send(team);
@@ -91,7 +91,7 @@ app.route('/teams/:id').put((request, response) => {
 app.route('/teams/:id').get((request, response) => {
   const teamId = +request.params['id'];
 
-  response.status(200).send(TEAMS.find(teamIterator => teamIterator.id === teamId));
+  response.status(200).send(TEAM.find(teamIterator => teamIterator.id === teamId));
 });
 
 app.route('/teams/:id').delete((request, response) => {
@@ -108,7 +108,7 @@ var PROJECT = [
     TEAMS: [''],
     status: 'Em andamento',
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vero neque molestiae sed sunt eos dolorum voluptate tempore. Praesentium voluptate fugit architecto distinctio similique veniam dolor dolores et asperiores deserunt.',
-    tasks:[
+    tasks: [
       {
         nameTask: '',
         member: '',
@@ -152,7 +152,7 @@ var PROJECT = [
   },
   {
     id: 7,
-    name: 'TI',
+    name: 'ti',
     TEAMS: [''],
     status: 'Em andamento',
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vero neque molestiae sed sunt eos dolorum voluptate tempore. Praesentium voluptate fugit architecto distinctio similique veniam dolor dolores et asperiores deserunt.'
@@ -200,31 +200,118 @@ var TEAM = [
   {
     id: 1,
     name: 'One Piece',
-    members: ['Carlos', 'Victor', 'Gaby']
+    members: [
+      {
+        name: 'Carlos'
+      },
+      {
+        name: 'luiza'
+      },
+      {
+        name: 'raquel'
+      },
+      {
+        name: 'kamily'
+      },
+    ]
   },
   {
     id: 2,
     name: 'Naruto',
-    members: ['Pedro', 'Lucas', 'Maria']
+    members: [
+      {
+        name: 'pedro'
+      },
+      {
+        name: 'riquelme'
+      },
+      {
+        name: 'zidane'
+      },
+      {
+        name: 'cristiano'
+      },
+    ]
   },
   {
     id: 3,
     name: 'Barbie',
-    members: ['Clara', 'Wannubia', 'Kelly']
+    members: [
+      {
+        name: 'ronaldo fenomeno'
+      },
+      {
+        name: 'lufy'
+      },
+      {
+        name: 'angie'
+      },
+    ]
   },
   {
     id: 4,
     name: 'Barba Branca',
-    members: ['Jose', 'Danubio', 'Nikole']
+    members: [
+      {
+        name: 'caio'
+      },
+      {
+        name: 'anabelle'
+      },
+      {
+        name: 'andre'
+      },
+      {
+        name: 'luiza sonza'
+      },
+    ]
   },
   {
     id: 5,
     name: 'Senai',
-    members: ['Nikollas', 'Paulo', 'Helen']
+    members: [
+      {
+        name: 'gepeto'
+      },
+      {
+        name: 'gby'
+      },
+      {
+        name: 'flavo'
+      },
+      {
+        name: 'kaio'
+      },
+    ]
   },
   {
     id: 6,
     name: 'Crato',
-    members: ['Bruna', 'Manuella', 'Isabela']
+    members: [
+      {
+        name: 'guilerme'
+      },
+      {
+        name: 'monaliza'
+      },
+      {
+        name: 'amanda'
+      },
+      {
+        name: 'lara'
+      },
+      {
+        name: 'pedrinho'
+      },
+      {
+        name: 'maria'
+      },
+      {
+        name: 'julliana'
+      },
+      {
+        name: 'angel'
+      },
+    ]
   }
 ]
