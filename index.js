@@ -3,6 +3,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { request } = require('http');
 const { response } = require('express');
+
+const port = process.env.PORT || 3000;
+const host =  '0.0.0.0'; 
+
 const app = express();
 
 
@@ -14,8 +18,8 @@ var corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-app.listen(3000, () => {
-  console.log('Server Started!');
+app.listen(port, host, () => {
+  console.log(`Server start in host ${host} on port ${port}`);
 });
 
 app.route('/projects').get((request, response) => {
